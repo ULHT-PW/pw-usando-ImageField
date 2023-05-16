@@ -4,7 +4,13 @@
 
 1. Criar, na root, a pasta media/tarefas para guardar os ficheiros carregados. Na pasta media deve colocar uma pasta com o nome da aplicação (no exemplo em baixo, aplicação tarefa)
 
-![image](https://github.com/ULHT-PW/pw-imagens/assets/42048382/b68d9e41-e6c6-4200-84a6-7a9d037594a1)
+```bash
+> config
+> media/tarefas
+> tarefas
+db.sqlite3
+manage.py
+```
 
 2. Em settings.py adicionar MEDIA_URL e MEDIA_ROOT:
 
@@ -29,7 +35,7 @@ urlpatterns += static(
 form = TarefaForm(request.POST or None, request.FILES)
 ```
 
-5. No template, no form adicionar ecntype:
+5. No template, no form adicionar enctype:
 ```Python
 <form method="POST" enctype="multipart/form-data">
 ```
