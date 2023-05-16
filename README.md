@@ -33,10 +33,8 @@ urlpatterns += static(
 4. Em `models.py`, na classe adicionar um atributo com o campo imagem/ficheiro. Deverá especificar para onde devem ser carregados os ficheiros. O django como base a pasta media, neste caso ao especificar `upload_to='tarefas/'`, os ficheiros sendo carregados na pasta `media/tarefas/`.
 
 ```Python
-imagem = models.ImageField(
-             upload_to='tarefas/’, 
-             null=True, 
-             blank=True)
+imagem = models.ImageField(upload_to='tarefas/', null=True, blank=True)
+ficheiro = models.FileField(upload_to='tarefas/', null=True, blank=True)
 ```
 
 5. No ficheiro `views.py`, onde cria uma instância do formulário, adicionar `request.FILES`:
@@ -51,3 +49,14 @@ form = TarefaForm(request.POST or None, request.FILES)
 <form method="POST" enctype="multipart/form-data">
 ```
 
+7. Para inserir no HTML uma imagem associada a um objeto, utilize o campo `url` de `imagem`:
+
+```HTML
+<img src="{{ tarefa.imagem.url }}">
+```
+
+8. Para inserir o link para um ficheiro associado a um objeto, utilize os campos `url` e `name` de `ficheiro`:
+
+```HTML
+Ficheiro: <a href="{{ tarefa.ficheiro.url }}">{{ tarefa.ficheiro.name }}</a>
+```
